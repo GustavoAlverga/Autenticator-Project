@@ -32,7 +32,7 @@ class Core:
         private_key = hashlib.sha256(newKey.encode()).hexdigest()
 
         new_service = service(name, private_key, known_keys)
-        self.services.append(new_service)
+        self.intruders.append(new_service)
         
         return new_service
 
@@ -59,7 +59,6 @@ class Core:
             new_service = service(name, private_key, known_keys)
             self.intruders.append(new_service)
 
-        self.add_known_keys_for_intruders(self.intruders, self.services)
         return self.intruders
 
     def build_known_keys_for_server(self, services):
@@ -78,14 +77,6 @@ class Core:
             del service.known_keys[service.name]
         except KeyError:
             pass
-
-    
-    def add_known_keys_for_intruders(self, intruders,services):
-        for intruder in intruders:
-            counter = len(services)
-            while  counter > 0:
-                intruder.known_keys[services[counter - 1].name] = services[counter - 1].private_key
-                counter -= 1
 
     def validator_of_service(self, service1, service2, message):
         hash1 = service1.generate_hash(message)
