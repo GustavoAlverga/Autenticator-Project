@@ -1,0 +1,25 @@
+services:
+  backend:
+    build: ./autenticador_mutuo_back
+    ports:
+      - "8000:8000"
+    networks:
+      - auth-network
+
+  frontend:
+    build: ./autenticador_mutuo_front
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./autenticador_mutuo_front:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    networks:
+      - auth-network
+
+networks:
+  auth-network:
+    driver: bridge

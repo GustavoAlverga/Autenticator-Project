@@ -1,0 +1,20 @@
+# frontend/Dockerfile (DESENVOLVIMENTO)
+FROM node:alpine3.22
+
+WORKDIR /app
+
+# Copia arquivos de dependências
+COPY package.json package-lock.json* ./
+
+# Copia código fonte
+COPY . .
+
+# Instala dependências
+RUN npm install
+
+
+# Expõe porta 3000
+EXPOSE 5173
+
+# Comando de desenvolvimento
+CMD ["npm", "run", "dev"]

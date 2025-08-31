@@ -1,0 +1,101 @@
+.bit-animation-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100px;
+  width: 53%;
+  max-width: 600px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.bit-stream {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box; /* Inclui padding no cálculo da largura */
+}
+
+.left-bits, .right-bits {
+  display: flex;
+  overflow: hidden;
+  flex: 1; /* Cada lado ocupa espaço igual */
+  min-width: 0; /* Permite que o flex-shrink funcione corretamente */
+}
+
+.left-bits {
+  justify-content: flex-end;
+  animation: slide-in-left 0.9s linear infinite;
+}
+
+.right-bits {
+  justify-content: flex-start;
+  animation: slide-in-right 0.9s linear infinite;
+}
+
+.bit {
+  margin: 0 3px; /* Margem reduzida */
+  font-family: monospace;
+  font-size: 16px; /* Tamanho um pouco menor */
+  color: #01b30a;
+  flex-shrink: 0; /* Impede que os bits encolham */
+}
+
+.center-container {
+  width: 180px; /* Largura um pouco menor */
+  height: 70px; /* Altura um pouco menor */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  margin: 0 5px; /* Margem reduzida */
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  flex-shrink: 0; /* Impede que o container central encolha */
+}
+
+.center-container.show-result {
+  opacity: 1;
+  padding: 8px;
+}
+
+.authentication-message {
+  font-weight: bold;
+  font-size: 14px; /* Tamanho um pouco menor */
+  text-align: center;
+  word-break: break-word; /* Quebra palavras longas */
+}
+
+.success {
+  color: #01b30a;
+}
+
+.failure {
+  color: #ff0000;
+}
+
+/* Animações permanecem iguais */
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

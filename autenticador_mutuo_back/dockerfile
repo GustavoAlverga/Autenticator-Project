@@ -1,0 +1,19 @@
+# Imagem base oficial do Python
+FROM python:3.12-alpine
+
+
+# Define a pasta de trabalho
+WORKDIR /app
+
+#Copia o arquivo de requisitos e instala as dependências
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Agora copia todo o código Python
+COPY . .
+
+# Expõe a porta que o FastAPI vai usar
+EXPOSE 8000
+
+# Comando para rodar a aplicação
+CMD ["uvicorn", "facade:app", "--host", "0.0.0.0", "--port", "8000"]
