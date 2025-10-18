@@ -94,3 +94,8 @@ Infraestrutura: Docker, Docker Compose
 Adicionar logs das tentativas de autenticação.
 
 Fazer uma variante usando uma entidade certificadora.
+
+Pré-Vizualização:
+![Logo do projeto](./images/img1.png)
+![Logo do projeto](./images/img2.png)
+
